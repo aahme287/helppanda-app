@@ -1,48 +1,57 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
-const List = ({ title }) => {
-  document.title = "List";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+
+const List = (props) => {
   return (
     <Fragment>
-        <section className="row p-5">
+      <section className="row p-5">
         <h1 className="pb-5">List of Incidents</h1>
-        <br/>
+
+        <br />
         <div className="table-responsive">
-            {/* <a className="btn btn-primary" href="/incidents/create" role="button">Create Incident</a> */}
-            <NavLink className="btn btn-primary mb-3" to="/incidents/create" >
-                Create Incident
-            </NavLink>
-            <br/>
-            <table className="table table-bordered table-striped table-hover">
-                <thead>
-                    <th className="text-center">Title</th>
-                    <th className="text-center">Description</th>
-                    <th className="text-center">Priority</th>
-                    <th className="text-center">Tags</th>
-                    <th className="text-center" colSpan="2" >Actions</th>
-                </thead>
+          {/* <a className="btn btn-primary" href="/incidents/create" role="button">Create Incident</a> */}
+          <NavLink className="btn btn-primary mb-3" to="/incidents/create">
+            Create Incident
+          </NavLink>
+          <br />
+          <table className="table table-bordered table-striped table-hover">
+            <tbody>
+              <tr>
+                <td className="text-center">Title</td>
+                <td className="text-center">Description</td>
+                <td className="text-center">Priority</td>
+                <td className="text-center">Tags</td>
+                <td className="text-center" colSpan="2">
+                  Actions
+                </td>
+              </tr>
+              {props.incidents.map((item) => (
+                <tr key={uuidv4()}>
+                  <td className="text-center">{item.title}</td>
+                  <td className="text-center">{item.description}</td>
+                  <td className="text-center">{item.priority}</td>
+                  <td className="text-center">{item.tags}</td>
 
-                    <tbody>
-                        <td className="text-center"></td>
-                        <td className="text-center"></td>
-                        <td className="text-center"></td>
-                        <td className="text-center"></td>
-                        
-                        <td className="text-center">
-                            <NavLink to="" className="btn btn-primary btn-sm">
-                            <i className="fa fa-pencil"></i>
-                            </NavLink>
-                        </td>
-                        <td>
-                            <NavLink to="" className="btn btn-danger btn-sm">
-                            <i className="fa fa-trash"></i></NavLink>
-                        </td>
-                            
-                    </tbody>
-            </table>
+                  <td className="text-center">
+                    <a
+                      href="/incidents/create"
+                      className="btn btn-primary btn-sm"
+                      onClick={props.updateCurrentIncident.bind(this, item)}
+                    >
+                      <i className="fa fa-pencil"></i>
+                    </a>
+                    <a href="" className="btn btn-danger btn-sm">
+                      <i className="fa fa-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-        </section>
+      </section>
     </Fragment>
   );
 };
