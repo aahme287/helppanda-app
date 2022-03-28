@@ -1,8 +1,14 @@
 import React, { Component, Fragment } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
 
 class Form extends Component {
+  // routeChange = () => {
+  //   let path = `/incidents`;
+  //   let history = useHistory();
+  //   history.push(path);
+  // };
+
   submitIncident(event) {
     event.preventDefault();
 
@@ -21,6 +27,7 @@ class Form extends Component {
         console.log(error);
       });
   }
+
   render() {
     return (
       <Fragment>
@@ -97,7 +104,12 @@ class Form extends Component {
               </div>
               <br />
 
-              <button className="btn btn-primary mx-2" type="submit">
+              <button
+                className="btn btn-primary mx-2"
+                type="submit"
+                // onClick={this.routeChange}
+                onClick={(event) => (window.location.href = "/incidents")}
+              >
                 <i className="fa fa-edit mx-2"></i>
                 Submit
               </button>
