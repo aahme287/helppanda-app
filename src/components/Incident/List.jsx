@@ -36,7 +36,7 @@ const List = (props) => {
 
                   <td className="text-center">
                     <a
-                      href="/incidents/create"
+                      href="/incidents/update"
                       className="btn btn-primary btn-sm"
                       onClick={props.updateCurrentIncident.bind(this, item)}
                     >

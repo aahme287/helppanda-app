@@ -45,7 +45,7 @@ class Main extends Component {
         <Switch>
           {/* <Route path="/incidents/create" component={Form} /> */}
           <Route path="/incidents/update">
-            <SingleIncident player={this.state.currentIncident} />
+            <SingleIncident incident={this.state.currentIncident} />
           </Route>
           <Route path="/incidents/create">
             <Form incident={this.state.currentIncident} />

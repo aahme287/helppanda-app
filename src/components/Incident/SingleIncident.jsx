@@ -8,14 +8,14 @@ const SingleIncident = (props) => {
       <section className="row text-center">
         <div className="mx-auto col-6">
           <h1 className="text-center pt-5">Add a new incident</h1>
-          <form className="form p-5" onSubmit={this.submitIncident.bind(this)}>
+          <form className="form p-5">
             <div className="form-group">
               <label htmlFor="title">Title</label>
               <input
                 type="text"
                 className="form-control"
                 id="title"
-                ref="title"
+                // ref="title"
                 value={props.incident.title}
                 required
               />
@@ -28,14 +28,14 @@ const SingleIncident = (props) => {
                 id="description"
                 className="form-control"
                 value={props.incident.discription}
-                ref="description"
+                // ref="description"
                 required
               ></input>
             </div>
             <br />
             <div className="form-group">
               <label htmlFor="priority">Select Priority</label>
-              <select className="form-control" id="priority" ref="priority">
+              <select className="form-control" id="priority">
                 <option value="low">Low</option>
                 <option value="normal">Normal</option>
                 <option value="high">High</option>
@@ -50,7 +50,7 @@ const SingleIncident = (props) => {
                 className="form-control"
                 id="tags"
                 value={props.incident.tags}
-                ref="tags"
+                // ref="tags"
               />
             </div>
             <br />
