@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 class Form extends Component {
   // routeChange = () => {
@@ -8,6 +9,9 @@ class Form extends Component {
   //   let history = useHistory();
   //   history.push(path);
   // };
+  constructor(props) {
+    super(props);
+  }
 
   submitIncident(event) {
     event.preventDefault();
@@ -54,7 +58,7 @@ class Form extends Component {
                   //ref="title"
                   ref="title" //{(title) => (this.title = title)}
                   //name="title"
-                  //value={props.incident.title}
+                  value={this.props.location.state}
                   required
                 />
               </div>
@@ -67,7 +71,7 @@ class Form extends Component {
                   className="form-control"
                   //   name="description"
                   //   placeholder="Enter A Description For Incident"
-                  //   value={props.incident.discription}
+                  value={this.props.incident.discription}
                   ref="description" //{(description) => (this.description = description)}
                   //rows="4"
                   //cols="50"
@@ -98,7 +102,7 @@ class Form extends Component {
                   id="tags"
                   //   placeholder="Enter Incident Tags"
                   //   name="tags"
-                  //   value={props.incident.tags}
+                  value={this.props.incident.tags}
                   ref="tags" //{(tags) => (this.tags = tags)}
                 />
               </div>

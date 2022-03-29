@@ -35,13 +35,25 @@ const List = (props) => {
                   <td className="text-center">{item.tags}</td>
 
                   <td className="text-center">
-                    <a
+                    <NavLink
+                      className="btn btn-primary btn-sm"
+                      to={{
+                        pathname: "/incidents/create",
+                        state: {
+                          title: item.title,
+                          discription: item.description,
+                          priority: item.priority,
+                          tags: item.tags,
+                        },
+                      }}
+                    >
+                      <i className="fa fa-pencil"></i>
+                    </NavLink>
+                    {/* <a
                       href="/incidents/update"
                       className="btn btn-primary btn-sm"
                       onClick={props.updateCurrentIncident.bind(this, item)}
-                    >
-                      <i className="fa fa-pencil"></i>
-                    </a>
+                    ></a> */}
                     <a href="" className="btn btn-danger btn-sm">
                       <i className="fa fa-trash"></i>
                     </a>
