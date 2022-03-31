@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { withRouter } from "react-router-dom";
 
-import TopNav from "./../Navs/TopNav";
-import Footer from "./../common/Footer";
+import TopNav from "./Navs/TopNav";
+import Footer from "./Navs/Footer";
 
 const MainLayout = (props) => {
   return (
