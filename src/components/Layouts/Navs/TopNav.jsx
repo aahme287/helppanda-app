@@ -54,7 +54,7 @@ const TopNav = () => {
                 activeStyle={{ color: "#63a4c9" }}
               >
                 <i className="fa fa-user px-2"></i>
-                Login
+                Sign In
               </NavLink>
             </li>
           </ul>
