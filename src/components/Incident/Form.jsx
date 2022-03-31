@@ -4,11 +4,6 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 class Form extends Component {
-  // routeChange = () => {
-  //   let path = `/incidents`;
-  //   let history = useHistory();
-  //   history.push(path);
-  // };
   constructor(props) {
     super(props);
   }
@@ -43,22 +38,12 @@ class Form extends Component {
               onSubmit={this.submitIncident.bind(this)}
             >
               <div className="form-group">
-                {/* <input
-                  type="hidden"
-                  name="id"
-                  ref="id"
-                /> */}
-
                 <label htmlFor="title">Title</label>
                 <input
                   type="text"
                   className="form-control"
                   id="title"
-                  //placeholder="Enter Your Title"
-                  //ref="title"
-                  ref="title" //{(title) => (this.title = title)}
-                  //name="title"
-                  // value={this.props.location.state}
+                  ref="title"
                   required
                 />
               </div>
@@ -81,12 +66,7 @@ class Form extends Component {
               <br />
               <div className="form-group">
                 <label htmlFor="priority">Select Priority</label>
-                <select
-                  className="form-control"
-                  id="priority"
-                  ref="priority" //{(priority) => (this.priority = priority)}
-                  //   name="priority"
-                >
+                <select className="form-control" id="priority" ref="priority">
                   <option value="low">Low</option>
                   <option value="normal">Normal</option>
                   <option value="high">High</option>
@@ -100,10 +80,7 @@ class Form extends Component {
                   type="text"
                   className="form-control"
                   id="tags"
-                  //   placeholder="Enter Incident Tags"
-                  //   name="tags"
-                  // value={this.props.incident.tags}
-                  ref="tags" //{(tags) => (this.tags = tags)}
+                  ref="tags"
                 />
               </div>
               <br />
@@ -111,7 +88,6 @@ class Form extends Component {
               <button
                 className="btn btn-primary mx-2"
                 type="submit"
-                // onClick={this.routeChange}
                 onClick={(event) => (window.location.href = "/incidents")}
               >
                 <i className="fa fa-edit mx-2"></i>
@@ -122,6 +98,13 @@ class Form extends Component {
                 <i className="fa fa-undo mx-2"></i>
                 Cancel
               </NavLink>
+              {/* <a
+                className="btn btn-danger mx-2"
+                href="/incidents"
+                onClick={this.props.deleteCurrentIncident.bind(this, item)}
+              >
+                Delete
+              </a> */}
 
               <NavLink to="" className="btn btn-danger mx-2">
                 Delete

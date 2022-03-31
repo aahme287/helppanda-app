@@ -63,7 +63,10 @@ class Main extends Component {
           </Route>
 
           <Route path="/incidents/create">
-            <Form incident={this.state.currentIncident} />
+            <Form
+              incident={this.state.currentIncident}
+              deleteCurrentIncident={this.deleteCurrentIncident}
+            />
           </Route>
 
           <Route path="/incidents">
