@@ -88,7 +88,7 @@ class SingleIncident extends Component {
               <button
                 className="btn btn-primary mx-2"
                 type="submit"
-                // onClick={(event) => (window.location.href = "/incidents")}
+                onClick={(event) => (window.location.href = "/incidents")}
               >
                 <i className="fa fa-edit mx-2"></i>
                 Submit
