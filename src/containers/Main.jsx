@@ -7,6 +7,8 @@ import Home from "../components/Home/Home";
 import List from "../components/Incident/List";
 import Form from "../components/Incident/Form";
 import SingleIncident from "../components/Incident/SingleIncident";
+import SignIn from "../components/Authentication/SignIn";
+import SignUp from "../components/Authentication/SignUp";
 
 class Main extends Component {
   constructor(props) {
@@ -58,6 +60,14 @@ class Main extends Component {
     return (
       <MainLayout>
         <Switch>
+          <Route path="/login">
+            <SignIn />
+          </Route>
+
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+
           <Route path="/incidents/update">
             <SingleIncident incident={this.state.currentIncident} />
           </Route>

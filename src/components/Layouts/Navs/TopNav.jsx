@@ -5,9 +5,8 @@ const TopNav = () => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
-
         <NavLink className="navbar-brand" to="/">
-          <img src="/images/logo.png" alt="LOGO"/>
+          <img src="/images/logo.png" alt="LOGO" />
         </NavLink>
 
         <button
@@ -24,7 +23,7 @@ const TopNav = () => {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto">
-            <li className="nav-item p-2">
+            <li className="nav-item px-2">
               <NavLink
                 className="nav-link "
                 aria-current="page"
@@ -32,19 +31,30 @@ const TopNav = () => {
                 exact
                 activeStyle={{ color: "#63a4c9" }}
               >
-                <i className="fa fa-home p-2"></i>
+                <i className="fa fa-home px-2"></i>
                 Home
               </NavLink>
             </li>
-            <li className="nav-item p-2">
+            <li className="nav-item px-2">
               <NavLink
                 className="nav-link"
                 to="/incidents"
                 exact
                 activeStyle={{ color: "#63a4c9" }}
               >
-                <i className="fa fa-tasks p-2"></i>
+                <i className="fa fa-tasks px-2"></i>
                 Incidents
+              </NavLink>
+            </li>
+            <li className="nav-item px-2">
+              <NavLink
+                className="nav-link"
+                to="/login"
+                exact
+                activeStyle={{ color: "#63a4c9" }}
+              >
+                <i className="fa fa-user px-2"></i>
+                Login
               </NavLink>
             </li>
           </ul>
