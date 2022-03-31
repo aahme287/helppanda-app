@@ -1,9 +1,21 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const List = (props) => {
+  // useEffect(() => {
+  //   axios
+  //     .post("http://localhost:3000/incidents/delete/", props.item._id)
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+
+  //   // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  // }, []);
   return (
     <Fragment>
       <section className="row p-5">
@@ -37,26 +49,27 @@ const List = (props) => {
                   <td className="text-center">
                     <NavLink
                       className="btn btn-primary btn-sm"
-                      to={{
-                        pathname: "/incidents/create",
-                        state: {
-                          title: item.title,
-                          discription: item.description,
-                          priority: item.priority,
-                          tags: item.tags,
-                        },
-                      }}
+                      to="/incidents/update"
+                      onClick={props.updateCurrentIncident.bind(this, item)}
                     >
                       <i className="fa fa-pencil"></i>
+                    </NavLink>
+                    <NavLink
+                      className="btn btn-danger btn-sm"
+                      // href=""
+                      to=""
+                      onClick={props.deleteCurrentIncident.bind(this, item)}
+                    >
+                      <i className="fa fa-trash"></i>
                     </NavLink>
                     {/* <a
                       href="/incidents/update"
                       className="btn btn-primary btn-sm"
                       onClick={props.updateCurrentIncident.bind(this, item)}
                     ></a> */}
-                    <a href="" className="btn btn-danger btn-sm">
+                    {/* <a href="" className="btn btn-danger btn-sm">
                       <i className="fa fa-trash"></i>
-                    </a>
+                    </a> */}
                   </td>
                 </tr>
               ))}

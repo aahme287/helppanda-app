@@ -17,6 +17,7 @@ class Main extends Component {
     };
 
     this.updateCurrentIncident = this.updateCurrentIncident.bind(this);
+    this.deleteCurrentIncident = this.deleteCurrentIncident.bind(this);
   }
 
   componentDidMount() {
@@ -39,24 +40,40 @@ class Main extends Component {
       currentIncident: item,
     });
   }
+
+  deleteCurrentIncident(item) {
+    axios
+      .get("http://localhost:3000/incidents/delete/" + item._id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // this.setState({
+    //   currentIncident: "",
+    // });
+  }
   render() {
     return (
       <MainLayout>
         <Switch>
-          {/* <Route path="/incidents/create" component={Form} /> */}
           <Route path="/incidents/update">
             <SingleIncident incident={this.state.currentIncident} />
           </Route>
+
           <Route path="/incidents/create">
             <Form incident={this.state.currentIncident} />
           </Route>
+
           <Route path="/incidents">
             <List
               incidents={this.state.incidents}
               updateCurrentIncident={this.updateCurrentIncident}
+              deleteCurrentIncident={this.deleteCurrentIncident}
             />
           </Route>
-          {/* <Route path="/incidents" component={List}/> */}
+
           <Route path="/" exact component={Home} />
         </Switch>
       </MainLayout>
