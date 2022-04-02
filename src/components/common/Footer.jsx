@@ -34,7 +34,7 @@ const Footer = () => {
           >
             <p className="btn btn-dark">
               <i className="fa fa-copyright fa-flip-horizontal"></i>
-              &nbsp;COPYRIGHT &nbsp;2021 &nbsp;HELPPANDA
+              &nbsp;COPYLEFT &nbsp;2021 &nbsp;HELPPANDA
             </p>
           </a>
         </div>

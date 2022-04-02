@@ -36,7 +36,10 @@ class SignIn extends Component {
           Submit
         </button>
         <p className="forgot-password text-right">
-          Forgot <a href="#">password?</a>
+           <a href="/SignUp">Need Account SignUp?</a>
+        </p>
+        <p className="forgot-password text-right">
+          <a href="#">Forgot password?</a>
         </p>
       </form>
     );
