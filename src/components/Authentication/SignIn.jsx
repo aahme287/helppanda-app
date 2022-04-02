@@ -5,7 +5,7 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      success: "",
+      success: false,
       token: "",
     };
   }
@@ -82,7 +82,7 @@ class SignIn extends Component {
               Submit
             </button>
             <p className="forgot-password text-right">
-              <a href="/SignUp">Sign Up ? </a>
+              <a href="/signup">Sign Up ? </a>
             </p>
           </form>
         )}
