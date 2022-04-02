@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const TopNav = () => {
+const TopNav = (props) => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
@@ -47,6 +47,11 @@ const TopNav = () => {
               </NavLink>
             </li>
             <li className="nav-item px-2">
+              {/* {props.isUserLoggedIn ? (
+                <div className="">true</div>
+              ) : (
+                <div className="">false</div>
+              )} */}
               <NavLink
                 className="nav-link"
                 to="/login"

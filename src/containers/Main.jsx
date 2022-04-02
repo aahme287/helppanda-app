@@ -9,6 +9,7 @@ import Form from "../components/Incident/Form";
 import SingleIncident from "../components/Incident/SingleIncident";
 import SignIn from "../components/Authentication/SignIn";
 import SignUp from "../components/Authentication/SignUp";
+import TopNav from "../components/Layouts/Navs/TopNav";
 
 class Main extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Main extends Component {
     this.state = {
       incidents: [],
       currentIncident: {},
+      isLoggedIn: false,
     };
 
     this.updateCurrentIncident = this.updateCurrentIncident.bind(this);
@@ -56,16 +58,22 @@ class Main extends Component {
     //   currentIncident: "",
     // });
   }
+  isUserLoggedIn(item) {
+    this.setState({
+      isLoggedIn: item,
+    });
+  }
   render() {
     return (
       <MainLayout>
+        <TopNav isUserLoggedIn={this.isUserLoggedIn} />
         <Switch>
           <Route path="/login">
-            <SignIn />
+            <SignIn isUserLoggedIn={this.isUserLoggedIn} />
           </Route>
 
           <Route path="/signup">
-            <SignUp />
+            <SignUp isUserLoggedIn={this.isUserLoggedIn} />
           </Route>
 
           <Route path="/incidents/update">

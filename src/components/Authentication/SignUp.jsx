@@ -27,9 +27,11 @@ class SignUp extends Component {
           token: response.data.token,
         });
         console.log(response.data.token);
+        this.props.isUserLoggedIn.bind(this, true);
       })
       .catch((error) => {
         console.log(error);
+        this.props.isUserLoggedIn.bind(this, false);
       });
   }
 

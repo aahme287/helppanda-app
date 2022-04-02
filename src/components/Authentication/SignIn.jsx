@@ -24,10 +24,12 @@ class SignIn extends Component {
           success: true,
           token: response.data.token,
         });
+        this.props.isUserLoggedIn.bind(this, true);
         console.log(response.data.token);
       })
       .catch((error) => {
         console.log(error);
+        this.props.isUserLoggedIn.bind(this, false);
       });
   }
 
