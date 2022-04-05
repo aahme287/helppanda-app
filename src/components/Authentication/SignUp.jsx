@@ -14,12 +14,19 @@ class SignUp extends Component {
     event.preventDefault();
 
     axios
-      .post("http://localhost:3000/users/signup", {
-        firstName: this.refs.firstName.value,
-        lastName: this.refs.lastName.value,
-        email: this.refs.email.value,
-        password: this.refs.password.value,
-      })
+      .post(
+        "http://localhost:3000/users/signup",
+        {
+          name: this.refs.firstName.value,
+          email: this.refs.email.value,
+          password: this.refs.password.value,
+        },
+        {
+          headers: {
+            authorization: this.props.token,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         this.setState({
@@ -37,7 +44,10 @@ class SignUp extends Component {
 
   render() {
     return (
-      <form className="form col-4 mx-auto">
+      <form
+        className="form col-4 mx-auto"
+        onSubmit={this.submitUser.bind(this)}
+      >
         <h3>Sign Up</h3>
         <div className="form-group pb-3">
           <label>First name</label>

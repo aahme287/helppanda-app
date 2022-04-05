@@ -14,10 +14,18 @@ class SignIn extends Component {
     event.preventDefault();
 
     axios
-      .post("http://localhost:3000/users/signin", {
-        email: this.refs.email.value,
-        password: this.refs.password.value,
-      })
+      .post(
+        "http://localhost:3000/users/signin",
+        {
+          email: this.refs.email.value,
+          password: this.refs.password.value,
+        },
+        {
+          headers: {
+            authorization: this.props.token,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         this.setState({
