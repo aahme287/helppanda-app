@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 class SignIn extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class SignIn extends Component {
           success: true,
           token: response.data.token,
         });
-        this.props.isUserLoggedIn.bind(this, this.state.success);
+        this.props.isUserLoggedIn(this.state.success);
         // localStorage.setItem("isLoggedIn", true);
         // console.log(this.props.isUserLoggedIn.value);
       })
@@ -44,7 +45,7 @@ class SignIn extends Component {
         // localStorage.setItem("isLoggedIn", this.success);
 
         console.log(error);
-        this.props.isUserLoggedIn.bind(this, false);
+        // this.props.isUserLoggedIn.bind(this, false);
       });
   }
 
@@ -56,7 +57,7 @@ class SignIn extends Component {
             <h1>You are logged in!</h1>
             <br />
             <p>
-              <a href="/">Go to Home</a>
+              <NavLink to="/">Go to Home</NavLink>
             </p>
           </section>
         ) : (

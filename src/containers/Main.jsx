@@ -67,7 +67,10 @@ class Main extends Component {
   render() {
     return (
       <MainLayout>
-        <TopNav isUserLoggedIn={this.state.isLoggedIn} />
+        <TopNav
+          isUserLoggedInFunc={this.isUserLoggedIn}
+          isUserLoggedIn={this.state.isLoggedIn}
+        />
         <Switch>
           <Route path="/login">
             <SignIn isUserLoggedIn={this.isUserLoggedIn} />

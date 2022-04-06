@@ -8,6 +8,7 @@ class TopNav extends Component {
     this.state = {
       success: true,
     };
+    console.log(this.props.isUserLoggedIn);
   }
 
   userSignOut(event) {
@@ -21,6 +22,7 @@ class TopNav extends Component {
           success: false,
         });
         // localStorage.setItem("isLoggedIn", false);
+        this.props.isUserLoggedInFunc(this.state.success);
       })
       .catch((error) => {
         console.log(error);
@@ -73,12 +75,12 @@ class TopNav extends Component {
                 </NavLink>
               </li>
               <li className="nav-item px-2">
-                {this.state.success ? (
+                {this.props.isUserLoggedIn ? (
                   <div className="">
-                    <a href="" onClick={this.userSignOut.bind(this)}>
+                    <NavLink to="" onClick={this.userSignOut.bind(this)}>
                       {" "}
                       Sign Out ?
-                    </a>
+                    </NavLink>
                   </div>
                 ) : (
                   <div className="">
