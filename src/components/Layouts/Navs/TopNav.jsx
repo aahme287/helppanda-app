@@ -76,7 +76,7 @@ class TopNav extends Component {
               </li>
               <li className="nav-item px-2">
                 {this.props.isUserLoggedIn ? (
-                  <div className="">
+                  <div className="pt-2">
                     <NavLink to="" onClick={this.userSignOut.bind(this)}>
                       {" "}
                       Sign Out ?
