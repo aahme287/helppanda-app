@@ -32,10 +32,17 @@ class SignIn extends Component {
           success: true,
           token: response.data.token,
         });
-        this.props.isUserLoggedIn.bind(this, true);
-        console.log(response.data.token);
+        this.props.isUserLoggedIn.bind(this, this.state.success);
+        // localStorage.setItem("isLoggedIn", true);
+        // console.log(this.props.isUserLoggedIn.value);
       })
       .catch((error) => {
+        // this.setState({
+        //   success: false,
+        //   token: "",
+        // });
+        // localStorage.setItem("isLoggedIn", this.success);
+
         console.log(error);
         this.props.isUserLoggedIn.bind(this, false);
       });

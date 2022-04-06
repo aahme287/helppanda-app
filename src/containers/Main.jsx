@@ -22,6 +22,7 @@ class Main extends Component {
 
     this.updateCurrentIncident = this.updateCurrentIncident.bind(this);
     this.deleteCurrentIncident = this.deleteCurrentIncident.bind(this);
+    this.isUserLoggedIn = this.isUserLoggedIn.bind(this);
   }
 
   componentDidMount() {
@@ -66,14 +67,14 @@ class Main extends Component {
   render() {
     return (
       <MainLayout>
-        <TopNav isUserLoggedIn={this.isUserLoggedIn} />
+        <TopNav isUserLoggedIn={this.state.isLoggedIn} />
         <Switch>
           <Route path="/login">
             <SignIn isUserLoggedIn={this.isUserLoggedIn} />
           </Route>
 
           <Route path="/signup">
-            <SignUp isUserLoggedIn={this.isUserLoggedIn} />
+            <SignUp />
           </Route>
 
           <Route path="/incidents/update">
