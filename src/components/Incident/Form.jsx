@@ -20,6 +20,7 @@ class Form extends Component {
         tags: this.refs.tags.value,
       })
       .then((response) => {
+        window.location.replace("/incidents")
         console.log(response);
       })
       .catch((error) => {

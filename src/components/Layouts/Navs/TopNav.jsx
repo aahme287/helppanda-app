@@ -27,7 +27,7 @@ class TopNav extends Component {
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">
-            <img src="/images/logo-sm-white.jpeg" alt="LOGO" />
+            <img src="/images/logo.png" alt="LOGO" />
           </NavLink>
 
           <button

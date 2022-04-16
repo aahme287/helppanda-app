@@ -53,6 +53,7 @@ class Main extends Component {
     axios
       .get("http://localhost:3000/incidents/delete/" + item._id)
       .then((response) => {
+        window.location.replace("/incidents")
         console.log(response);
       })
       .catch((error) => {
