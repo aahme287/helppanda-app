@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import Identity from "../../lib/identity";
 
 class SignIn extends Component {
   constructor(props) {
@@ -13,13 +14,14 @@ class SignIn extends Component {
 
   submitUser(event) {
     event.preventDefault();
-
+    const email = this.refs.email.value;
+    const password = this.refs.password.value
     axios
       .post(
         "http://localhost:3000/users/signin",
         {
-          email: this.refs.email.value,
-          password: this.refs.password.value,
+          email,
+          password,
         },
         {
           headers: {
@@ -34,8 +36,11 @@ class SignIn extends Component {
           token: response.data.token,
         });
         this.props.isUserLoggedIn(this.state.success);
-        // localStorage.setItem("isLoggedIn", true);
-        // console.log(this.props.isUserLoggedIn.value);
+        Identity.set({
+          email,
+          token: response.data.token
+        })
+        window.location.replace("/incidents");
       })
       .catch((error) => {
         // this.setState({
@@ -56,6 +61,7 @@ class SignIn extends Component {
           <section>
             <h1>You are logged in!</h1>
             <br />
+            <p><b>You are being redirected...</b></p>
             <p>
               <NavLink to="/">Go to Home</NavLink>
             </p>

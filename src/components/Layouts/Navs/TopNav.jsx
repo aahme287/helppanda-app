@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import Identity from "../../../lib/identity";
 
 class TopNav extends Component {
   constructor(props) {
@@ -8,25 +9,17 @@ class TopNav extends Component {
     this.state = {
       success: true,
     };
+    this.identity = Identity.get()
     console.log(this.props.isUserLoggedIn);
   }
 
   userSignOut(event) {
     event.preventDefault();
 
-    axios
-      .get("http://localhost:3000/users/signout")
-      .then((response) => {
-        console.log(response);
-        this.setState({
-          success: false,
-        });
-        // localStorage.setItem("isLoggedIn", false);
-        this.props.isUserLoggedInFunc(this.state.success);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if(window.confirm("Are you sure you want to signout?")) {
+      Identity.clear()
+      window.location.replace("/");
+    }
   }
 
   render() {
@@ -34,7 +27,7 @@ class TopNav extends Component {
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">
-            <img src="/images/logo.png" alt="LOGO" />
+            <img src="/images/logo-sm-white.jpeg" alt="LOGO" />
           </NavLink>
 
           <button
@@ -75,12 +68,13 @@ class TopNav extends Component {
                 </NavLink>
               </li>
               <li className="nav-item px-2">
-                {this.props.isUserLoggedIn ? (
+                {this.identity ? (
                   <div className="pt-2">
+                     {this.identity.email}&nbsp;
                     <NavLink to="" onClick={this.userSignOut.bind(this)}>
-                      {" "}
-                      Sign Out ?
+                      <small>(Sign Out)</small>
                     </NavLink>
+                    
                   </div>
                 ) : (
                   <div className="">
