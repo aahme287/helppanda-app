@@ -23,6 +23,7 @@ class Form extends Component {
         console.log(response);
       })
       .catch((error) => {
+        alert(error)
         console.log(error);
       });
   }
@@ -35,7 +36,8 @@ class Form extends Component {
             <h1 className="text-center pt-5">Add a new incident</h1>
             <form
               className="form p-5"
-              onSubmit={this.submitIncident.bind(this)}
+              onSubmit={(e) => { return this.submitIncident(e);}}
+
             >
               <div className="form-group">
                 <label htmlFor="title">Title</label>
@@ -88,7 +90,6 @@ class Form extends Component {
               <button
                 className="btn btn-primary mx-2"
                 type="submit"
-                onClick={(event) => (window.location.href = "/incidents")}
               >
                 <i className="fa fa-edit mx-2"></i>
                 Submit

@@ -45,7 +45,8 @@ const List = (props) => {
                     <a
                       className="btn btn-danger btn-sm"
                       href="/incidents"
-                      onClick={props.deleteCurrentIncident.bind(this, item)}
+                      onClick={(e) => { props.deleteCurrentIncident(e, item);}}
+
                     >
                       <i className="fa fa-trash"></i>
                     </a>

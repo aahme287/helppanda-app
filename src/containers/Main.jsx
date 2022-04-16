@@ -46,15 +46,20 @@ class Main extends Component {
     });
   }
 
-  deleteCurrentIncident(item) {
+  deleteCurrentIncident(event,item) {
+    event.preventDefault();
+
+    if(window.confirm('Are you sure?')){
     axios
       .get("http://localhost:3000/incidents/delete/" + item._id)
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
+        alert(error)
         console.log(error);
-      });
+      }); 
+    }
     // this.setState({
     //   currentIncident: "",
     // });
