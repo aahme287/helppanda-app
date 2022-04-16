@@ -48,7 +48,7 @@ class SignIn extends Component {
         //   token: "",
         // });
         // localStorage.setItem("isLoggedIn", this.success);
-
+        alert(error)
         console.log(error);
         // this.props.isUserLoggedIn.bind(this, false);
       });
@@ -68,7 +68,7 @@ class SignIn extends Component {
           </section>
         ) : (
           <form
-            className="form col-4 mx-auto"
+            className="p-4 form col-4 mx-auto"
             onSubmit={this.submitUser.bind(this)}
           >
             <h3>Sign In</h3>

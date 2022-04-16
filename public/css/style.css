@@ -118,3 +118,15 @@ html {
   .tags .badge {
     margin-right: 5px;
   }
+
+  .table {
+    line-height: 1.7em;
+  }
+
+  .table th {
+    line-height: 3em !important;
+  }
+
+  .col-action {
+    width: 100px;
+  }

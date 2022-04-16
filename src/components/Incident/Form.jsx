@@ -32,7 +32,7 @@ class Form extends Component {
   render() {
     return (
       <Fragment>
-        <section className="row text-center">
+        <section className="row">
           <div className="mx-auto col-6">
             <h1 className="text-center pt-5">Add a new incident</h1>
             <form

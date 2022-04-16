@@ -23,7 +23,7 @@ const List = (props) => {
                 <th className="text-left">Description</th>
                 <th className="text-center">Priority</th>
                 <th className="text-center">Tags</th>
-                <th className="text-right">Actions</th>
+                <th className="text-right col-action">Actions</th>
               </tr>
             </thead>
               <tbody>
