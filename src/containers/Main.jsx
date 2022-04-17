@@ -6,10 +6,8 @@ import MainLayout from "../components/Layouts/MainLayout";
 import Home from "../components/Home/Home";
 import List from "../components/Incident/List";
 import Form from "../components/Incident/Form";
-import SingleIncident from "../components/Incident/SingleIncident";
 import SignIn from "../components/Authentication/SignIn";
 import SignUp from "../components/Authentication/SignUp";
-import TopNav from "../components/Layouts/Navs/TopNav";
 
 class Main extends Component {
   constructor(props) {
@@ -46,6 +44,12 @@ class Main extends Component {
     });
   }
 
+  resetCurrentIncident() {
+    this.setState({
+      currentIncident: null,
+    });
+  }
+
   deleteCurrentIncident(event,item) {
     event.preventDefault();
 
@@ -73,10 +77,6 @@ class Main extends Component {
   render() {
     return (
       <MainLayout>
-        <TopNav
-          isUserLoggedInFunc={this.isUserLoggedIn}
-          isUserLoggedIn={this.state.isLoggedIn}
-        />
         <Switch>
           <Route path="/login">
             <SignIn isUserLoggedIn={this.isUserLoggedIn} />
@@ -87,13 +87,16 @@ class Main extends Component {
           </Route>
 
           <Route path="/incidents/update">
-            <SingleIncident incident={this.state.currentIncident} />
+            <Form
+                incident={this.state.currentIncident}
+                deleteCurrentIncident={this.deleteCurrentIncident}
+              />
           </Route>
 
           <Route path="/incidents/create">
             <Form
-              incident={this.state.currentIncident}
-              deleteCurrentIncident={this.deleteCurrentIncident}
+              incident={{}}
+              deleteCurrentIncident={null}
             />
           </Route>
 

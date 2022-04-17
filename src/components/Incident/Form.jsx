@@ -1,18 +1,25 @@
 import React, { Component, Fragment } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 
 class Form extends Component {
   constructor(props) {
     super(props);
+    this.incident = props.incident
   }
 
   submitIncident(event) {
     event.preventDefault();
 
+    let url;
+    if(this.incident && this.incident._id) {
+      url = "http://localhost:3000/incidents/update/" + this.incident._id
+    } else {
+      url = "http://localhost:3000/incidents/create"
+    }
+
     axios
-      .post("http://localhost:3000/incidents/create", {
+      .post(url, {
         // _id: this.refs._id.value,
         title: this.refs.title.value,
         description: this.refs.description.value,
@@ -47,29 +54,27 @@ class Form extends Component {
                   className="form-control"
                   id="title"
                   ref="title"
+                  defaultValue={this.incident.title}
                   required
                 />
               </div>
               <br />
               <div className="form-group">
                 <label htmlFor="description">Description</label>
-                <input
+                <textarea
                   type="text"
                   id="description"
                   className="form-control"
-                  //   name="description"
-                  //   placeholder="Enter A Description For Incident"
-                  // value={this.props.incident.discription}
-                  ref="description" //{(description) => (this.description = description)}
-                  //rows="4"
-                  //cols="50"
+                  ref="description"
+                  rows="4"
                   required
-                ></input>
+                  defaultValue={this.incident.description}
+                ></textarea>
               </div>
               <br />
               <div className="form-group">
                 <label htmlFor="priority">Select Priority</label>
-                <select className="form-control" id="priority" ref="priority">
+                <select defaultValue={this.incident.priority} className="form-control" id="priority" ref="priority">
                   <option value="low">Low</option>
                   <option value="normal">Normal</option>
                   <option value="high">High</option>
@@ -83,6 +88,7 @@ class Form extends Component {
                   type="text"
                   className="form-control"
                   id="tags"
+                  defaultValue={this.incident.tags}
                   ref="tags"
                 />
               </div>

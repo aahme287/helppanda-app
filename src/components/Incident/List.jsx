@@ -1,7 +1,5 @@
-import React, { Component, Fragment, useEffect } from "react";
+import React, {Fragment } from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
 const List = (props) => {
   return (
@@ -27,8 +25,8 @@ const List = (props) => {
               </tr>
             </thead>
               <tbody>
-              {props.incidents.map((item) => (
-                <tr key={uuidv4()}>
+              {props.incidents.map((item, i) => (
+                <tr key={i}>
                   <td className="text-left">{item.title}</td>
                   <td className="text-left">{item.description}</td>
                   <td className="text-center">
@@ -43,7 +41,7 @@ const List = (props) => {
                     </td>
                   <td className="text-center tags">
                     {item.tags.map((value, index) => {
-                      return <span className="badge bg-light text-dark">{value}</span>
+                      return <span key={index} className="badge bg-light text-dark">{value}</span>
                     })}
                   </td>
 
