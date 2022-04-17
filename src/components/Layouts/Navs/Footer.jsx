@@ -23,8 +23,6 @@ const Footer = () => {
           </div>
         </div>
       </section>
-      <hr />
-
       <section className="row text-center">
         <div className="col-12">
           <a

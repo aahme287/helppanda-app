@@ -7,7 +7,7 @@ import Footer from "./Navs/Footer";
 const MainLayout = (props) => {
   return (
     <Fragment>
-      {/* <TopNav /> */}
+      <TopNav />
       <main className="container-fluid text-white">{props.children}</main>
       <Footer />
     </Fragment>

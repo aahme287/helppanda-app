@@ -24,11 +24,11 @@ class TopNav extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-md navbar-dark">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">
-            <img src="/images/logo.png" alt="LOGO" />
-          </NavLink>
+          <a className="navbar-brand" href="/">
+            <img src="/images/logo-sm.png" alt="LOGO" />
+          </a>
 
           <button
             className="navbar-toggler"
@@ -93,7 +93,6 @@ class TopNav extends Component {
             </ul>
           </div>
         </div>
-        <hr />
       </nav>
     );
   }
