@@ -19,6 +19,7 @@ const List = (props) => {
                 <th className="text-left">Description</th>
                 <th className="text-center">Priority</th>
                 <th className="text-center">Tags</th>
+                <th className="text-center">Created</th>
                 <th className="text-right col-action">Actions</th>
               </tr>
             </thead>
@@ -41,6 +42,10 @@ const List = (props) => {
                     {item.tags.map((value, index) => {
                       return <span key={index} className="badge bg-light text-dark">{value}</span>
                     })}
+                  </td>
+
+                  <td className="text-center">
+                    <span className="badge text-secondary">{item.createdBy}</span>
                   </td>
 
                   <td className="text-right">

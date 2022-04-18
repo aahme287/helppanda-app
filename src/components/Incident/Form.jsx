@@ -26,18 +26,20 @@ class Form extends Component {
 
     axios
       .post(url, {
-        // _id: this.refs._id.value,
         title: this.refs.title.value,
         description: this.refs.description.value,
         priority: this.refs.priority.value,
         tags: this.refs.tags.value,
+        createdBy: this.incident.createdBy
       })
       .then((response) => {
         window.location.replace("/incidents")
         console.log(response);
       })
       .catch((error) => {
-        alert(error)
+        if(error.response) {
+          alert(error.response.data.message)
+        }
         console.log(error);
       });
   }
