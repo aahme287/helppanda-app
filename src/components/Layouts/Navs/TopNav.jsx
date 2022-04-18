@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import axios from "axios";
+import { NavLink, Link } from "react-router-dom";
 import Identity from "../../../lib/identity";
 
 class TopNav extends Component {
@@ -24,8 +23,8 @@ class TopNav extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-md navbar-dark">
-        <div className="container-fluid">
+      <nav className="navbar navbar-expand-md navbar-dark mb-4">
+        <div className="container">
           <a className="navbar-brand" href="/">
             <img src="/images/logo-sm.png" alt="LOGO" />
           </a>
@@ -67,30 +66,37 @@ class TopNav extends Component {
                   Incidents
                 </NavLink>
               </li>
-              <li className="nav-item px-2">
-                {this.identity ? (
-                  <div className="pt-2">
-                     {this.identity.email}&nbsp;
-                    <NavLink to="" onClick={this.userSignOut.bind(this)}>
-                      <small>(Sign Out)</small>
-                    </NavLink>
+            </ul>
+            <div>
+            {this.identity ? (
+                    <div><Link className="btn btn-sm btn-link text-info" 
+                      to={{
+                          pathname:"/signup",
+                          user: this.identity
+                          } 
+                      }>{this.identity.email}
+                    </Link>
+                    <NavLink className="btn btn-sm btn-link text-secondary" to="" onClick={this.userSignOut.bind(this)}>
+                    <small>(Sign Out)</small>
+                    </NavLink></div>
                     
-                  </div>
                 ) : (
                   <div className="">
                     <NavLink
-                      className="nav-link"
+                      className="btn btn-link text-light"
                       to="/login"
                       exact
                       activeStyle={{ color: "#63a4c9" }}
                     >
                       <i className="fa fa-user px-2"></i>
                       Log In
+                    </NavLink>&nbsp;
+                    <NavLink className="btn btn-outline-primary" 
+                      to="/signup">Signup
                     </NavLink>
                   </div>
                 )}
-              </li>
-            </ul>
+            </div>
           </div>
         </div>
       </nav>

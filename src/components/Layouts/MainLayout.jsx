@@ -8,7 +8,7 @@ const MainLayout = (props) => {
   return (
     <Fragment>
       <TopNav />
-      <main className="container-fluid text-white">{props.children}</main>
+      <main className="container p-3 text-white">{props.children}</main>
       <Footer />
     </Fragment>
   );

@@ -39,11 +39,11 @@ html {
   
   /*********** NAVBAR SETTING ************/
   .navbar {
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */
   }
   
   .navbar-nav {
-    margin-left:auto;
+    /* margin-left:auto; */
   }
   .navbar-brand {
 
@@ -130,4 +130,8 @@ html {
 
   .col-action {
     width: 100px;
+  }
+
+  .lead {
+    line-height: 1.6em;
   }
