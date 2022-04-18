@@ -36,10 +36,11 @@ class SignIn extends Component {
           token: response.data.token,
         });
         this.props.isUserLoggedIn(this.state.success);
-        Identity.set({
-          email,
-          token: response.data.token
-        })
+
+        let user = response.data.user
+        user.token = response.data.token
+
+        Identity.set(user)
         window.location.replace("/incidents");
       })
       .catch((error) => {

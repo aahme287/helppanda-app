@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
+import Identity from "../../lib/identity";
 
 class SignUp extends Component {
   constructor(props) {
@@ -8,37 +10,66 @@ class SignUp extends Component {
       success: false,
       token: "",
     };
+    this.user = Identity.get()
+    console.log('signup state:', props)
+
+    if(this.user && this.user._id) {
+      this.title = "Update Profile"
+    } else {
+      this.title = "Signup"
+      this.user = {}
+    }
   }
 
   submitUser(event) {
     event.preventDefault();
 
-    axios
-      .post(
-        "http://localhost:3000/users/signup",
-        {
-          name: this.refs.firstName.value,
-          email: this.refs.email.value,
-          password: this.refs.password.value,
-        },
-        {
-          headers: {
-            authorization: this.props.token,
-          },
-        }
-      )
-      .then((response) => {
+    if(this.refs.password.value !== this.refs.repassword.value) {
+      alert('Password does not match');
+      return;
+    }
+
+    let url, method, headers, data
+    data = {
+      name: this.refs.name.value,
+      email: this.refs.email.value,
+    }
+    if(this.user && this.user._id) {
+      method = 'put'
+      url = "http://localhost:3000/users/" + this.user._id
+      headers = {
+        authorization: this.user.token
+      }
+      if(this.refs.password.value) { // pass only if provided
+        data.password = this.refs.password.value
+      }
+    } else {
+      method = 'post'
+      url = 'http://localhost:3000/users/signup'
+      headers = {}
+      data.password = this.refs.password.value
+    }
+    
+    console.log(method, url, data, headers)
+    axios({
+        method,
+        url,
+        data,
+        headers,
+      }).then((response) => {
         console.log(response);
         this.setState({
           success: true,
           token: response.data.token,
         });
         console.log(response.data.token);
-        this.props.isUserLoggedIn.bind(this, true);
-      })
-      .catch((error) => {
+        Identity.set(response.data.user)
+
+      }).catch((error) => {
         console.log(error);
-        this.props.isUserLoggedIn.bind(this, false);
+        if(error.response) {
+          alert(error.response.data.message)
+        }
       });
   }
 
@@ -55,27 +86,25 @@ class SignUp extends Component {
             </p>
           </section>
         ) : (
-          <form
-            className="form col-4 mx-auto"
+          <section>
+            <header className="mx-auto">
+              
+            </header>
+
+            <form
+            className="form col-5 mx-auto"
             onSubmit={this.submitUser.bind(this)}
           >
-            <h3>Sign Up</h3>
+            <h1 className="display-6 pb-4">{this.title}</h1>
             <div className="form-group pb-3">
-              <label>First name</label>
+              <label>Full name</label>
               <input
                 type="text"
                 className="form-control"
                 placeholder="First name"
-                ref="firstName"
-              />
-            </div>
-            <div className="form-group pb-3">
-              <label>Last name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Last name"
-                ref="lastName"
+                ref="name"
+                required
+                defaultValue={this.user.name}
               />
             </div>
             <div className="form-group pb-3">
@@ -85,8 +114,11 @@ class SignUp extends Component {
                 className="form-control"
                 placeholder="Enter email"
                 ref="email"
+                required
+                defaultValue={this.user.email}
               />
             </div>
+            <hr />
             <div className="form-group pb-3">
               <label>Password</label>
               <input
@@ -96,6 +128,15 @@ class SignUp extends Component {
                 ref="password"
               />
             </div>
+            <div className="form-group pb-3">
+              <label>Retype password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Enter password"
+                ref="repassword"
+              />
+            </div>
             <button type="submit" className="btn btn-primary btn-block mb-3">
               Sign Up
             </button>
@@ -103,10 +144,12 @@ class SignUp extends Component {
               <a href="/login"> Already registered ? Sign in.</a>
             </p>
           </form>
+          </section>
+          
         )}
       </Fragment>
     );
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

@@ -4,10 +4,8 @@ import { NavLink } from "react-router-dom";
 const List = (props) => {
   return (
     <Fragment>
-      <section className="row p-5">
-        <h1 className="pb-5">List of Incidents</h1>
-
-        <br />
+      <section>
+        <h1 className="display-5">List of Incidents</h1>
         <div className="table-responsive">
           {/* <a className="btn btn-primary" href="/incidents/create" role="button">Create Incident</a> */}
           <NavLink className="btn btn-primary mb-3" to="/incidents/create">

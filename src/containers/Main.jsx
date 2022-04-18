@@ -15,6 +15,7 @@ class Main extends Component {
     this.state = {
       incidents: [],
       currentIncident: {},
+      currentUser: null,
       isLoggedIn: false,
     };
 
@@ -25,7 +26,6 @@ class Main extends Component {
 
   componentDidMount() {
     const url = "http://localhost:3000/incidents";
-
     axios
       .get(url)
       .then((Response) => {
@@ -37,6 +37,8 @@ class Main extends Component {
         console.log(error);
       });
   }
+
+  
 
   updateCurrentIncident(item) {
     this.setState({
@@ -83,7 +85,7 @@ class Main extends Component {
           </Route>
 
           <Route path="/signup">
-            <SignUp />
+            <SignUp user={this.user} />
           </Route>
 
           <Route path="/incidents/update">

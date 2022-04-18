@@ -6,6 +6,12 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.incident = props.incident
+
+    if(this.incident && this.incident._id) {
+      this.title = 'Update Incident'
+    } else {
+      this.title = 'Add new Incident'
+    }
   }
 
   submitIncident(event) {
@@ -41,7 +47,7 @@ class Form extends Component {
       <Fragment>
         <section className="row">
           <div className="mx-auto col-6">
-            <h1 className="text-center pt-5">Add a new incident</h1>
+            <h1 className="text-center pt-5">{this.title}</h1>
             <form
               className="form p-5"
               onSubmit={(e) => { return this.submitIncident(e);}}
