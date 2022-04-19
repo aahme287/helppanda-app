@@ -3,23 +3,31 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 import Identity from "../../lib/identity";
 
-class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      success: false,
-      token: "",
-    };
-    this.user = Identity.get()
-    console.log('signup state:', props)
 
-    if(this.user && this.user._id) {
-      this.title = "Update Profile"
-    } else {
-      this.title = "Signup"
-      this.user = {}
+  class SignUp extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        success: false,
+        token: "",
+      };
+      this.user = Identity.get()
+      console.log('signup state:', props)
+  
+      if(this.user && this.user._id) {
+        this.title = "Update Profile"
+      } else {
+        this.title = "Signup"
+        this.user = {}
+      }
+
+      if(this.user && this.user._id) {
+        this.button = "Update"
+      } else {
+        this.button = "Signup"
+        this.user = {}
+      }
     }
-  }
 
   submitUser(event) {
     event.preventDefault();
@@ -82,7 +90,7 @@ class SignUp extends Component {
             <br />
             <p>
               You are signed up. Please go to Login page and use your
-              credentioals.
+              credentials.
             </p>
           </section>
         ) : (
@@ -138,7 +146,7 @@ class SignUp extends Component {
               />
             </div>
             <button type="submit" className="btn btn-primary btn-block mb-3">
-              Sign Up
+              {this.button}
             </button>
             <p className="forgot-password text-right">
               <a href="/login"> Already registered ? Sign in.</a>
