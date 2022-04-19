@@ -16,14 +16,9 @@ import Identity from "../../lib/identity";
   
       if(this.user && this.user._id) {
         this.title = "Update Profile"
-      } else {
-        this.title = "Signup"
-        this.user = {}
-      }
-
-      if(this.user && this.user._id) {
         this.button = "Update"
       } else {
+        this.title = "Signup"
         this.button = "Signup"
         this.user = {}
       }
